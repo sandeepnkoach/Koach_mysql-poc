@@ -19,6 +19,7 @@ exports.create = (req, res) => {
     accountstatus:req.body.accountstatus
   });
 
+
   // Save Customer in the database
   Customer.create(customer, (err, data) => {
     if (err)
@@ -28,7 +29,19 @@ exports.create = (req, res) => {
       });
     else res.send(data);
   });
+
+   // Save licence in the database
+   Customer2.create(customer2, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Customer."
+      });
+    else res.send(data);
+  });
 };
+
+
 
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
@@ -41,6 +54,8 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
+
+
 
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {
@@ -58,6 +73,8 @@ exports.findOne = (req, res) => {
     } else res.send(data);
   });
 };
+
+
 
 // Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
@@ -89,6 +106,9 @@ exports.update = (req, res) => {
   );
 };
 
+
+
+
 // Delete a Customer with the specified customerId in the request
 exports.delete = (req, res) => {
   Customer.remove(req.params.customerId, (err, data) => {
@@ -106,6 +126,8 @@ exports.delete = (req, res) => {
   });
 };
 
+
+
 // Delete all Customers from the database.
 exports.deleteAll = (req, res) => {
   Customer.removeAll((err, data) => {
@@ -117,3 +139,5 @@ exports.deleteAll = (req, res) => {
     else res.send({ message: `All Customers were deleted successfully!` });
   });
 };
+
+

@@ -1,9 +1,9 @@
 module.exports = app => {
     const add_account = require("../controllers/customer.controller.js");
-  
+
     // Create a new Customer
     app.post("/add_account", add_account.create);
-  
+    
     // Retrieve all Customers
     app.get("/add_account", add_account.findAll);
   

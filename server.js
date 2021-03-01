@@ -16,6 +16,8 @@ app.get("/", (req, res) => {
 
 // set port, listen for requests
 require("./app/routes/customer.routes.js")(app);
+
+require("./app/routes/licence.routes.js")(app);
 app.listen(8080, () => {
   console.log("Server is running on port 8080.");
 });

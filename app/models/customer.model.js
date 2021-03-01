@@ -8,7 +8,8 @@ const Customer = function(customer) {
   this.address = customer.address;
   this.acc_description = customer.acc_description;
   this.accountstatus = customer.accountstatus;
-};
+  };
+
 
 Customer.create = (newCustomer, result) => {
   sql.query("INSERT INTO add_account SET ?", newCustomer, (err, res) => {
@@ -18,10 +19,11 @@ Customer.create = (newCustomer, result) => {
       return;
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer });
+    console.log("created account: ", { id: res.insertId, ...newCustomer });
     result(null, { id: res.insertId, ...newCustomer });
   });
 };
+
 
 Customer.findById = (customerId, result) => {
   sql.query(`SELECT * FROM add_account WHERE id = ${customerId}`, (err, res) => {
@@ -42,6 +44,9 @@ Customer.findById = (customerId, result) => {
   });
 };
 
+
+
+
 Customer.getAll = result => {
   sql.query("SELECT * FROM add_account", (err, res) => {
     if (err) {
@@ -54,6 +59,8 @@ Customer.getAll = result => {
     result(null, res);
   });
 };
+
+
 
 Customer.updateById = (id, customer, result) => {
   sql.query(
@@ -78,6 +85,8 @@ Customer.updateById = (id, customer, result) => {
   );
 };
 
+
+
 Customer.remove = (id, result) => {
   sql.query("DELETE FROM add_account WHERE id = ?", id, (err, res) => {
     if (err) {
@@ -97,6 +106,8 @@ Customer.remove = (id, result) => {
   });
 };
 
+
+
 Customer.removeAll = result => {
   sql.query("DELETE FROM add_account", (err, res) => {
     if (err) {
@@ -109,5 +120,9 @@ Customer.removeAll = result => {
     result(null, res);
   });
 };
+
+
+
+
 
 module.exports = Customer;
